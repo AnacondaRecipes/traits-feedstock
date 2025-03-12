@@ -32,10 +32,12 @@ test:
     - traits
   requires:
     - pip
+    - pytest
   commands:
     - pip check
     # check that pip gets the correct version
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -v --pyargs traits
 
 about:
   home: https://docs.enthought.com/traits/
