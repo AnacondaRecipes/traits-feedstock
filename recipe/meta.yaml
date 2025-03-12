@@ -1,18 +1,20 @@
+{% set name = "traits" %}
 {% set version = "7.0.2" %}
 
 package:
-  name: traits
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: traits-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/t/traits/traits-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: a563515809cb3911975de5a54209855f0b6fdb7ca6912a5e81de26529f70428c
 
 build:
   number: 0
-  skip: true  # [py27]
+  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  entry_points:
+    - introduction = traits.examples._etsdemo_info:introduction
 
 requirements:
   build:
@@ -24,22 +26,52 @@ requirements:
     - wheel
   run:
     - python
-  run_constrained:
-    - traitsui >=7.0
 
 test:
   imports:
     - traits
-  commands:
-    - pip check
   requires:
     - pip
+  commands:
+    - pip check
+    # check that pip gets the correct version
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
 
 about:
-  home: http://code.enthought.com/projects/traits
-  license: BSD 3-clause
+  home: https://docs.enthought.com/traits/
+  license: BSD-3-Clause
   license_file: LICENSE.txt
-  summary: traits - explicitly typed attributes for Python
+  license_family: BSD
+  summary: Observable typed attributes for Python classes
+  description: |
+    The Traits project allows Python programmers to use a special kind
+    of type definition called a trait, which gives object attributes
+    some additional characteristics:
+
+      Initialization: A trait has a default value, which is
+      automatically set as the initial value of an attribute before
+      its first use in a program.
+
+      Validation: The type of a trait attribute is explicitly
+      declared. The type is evident in the code, and only values that
+      meet a programmer-specified set of criteria (i.e., the trait
+      definition) can be assigned to that attribute.
+
+      Delegation: The value of a trait attribute can be contained
+      either in the defining object or in another object delegated to
+      by the trait.
+
+      Notification: Setting the value of a trait attribute can notify
+      other parts of the program that the value has changed.
+
+      Visualization: User interfaces that allow a user to
+      interactively modify the value of a trait attribute can be
+      automatically constructed using the trait’s definition. (This
+      feature requires that a supported GUI toolkit be installed. If
+      this feature is not used, the Traits project does not otherwise
+      require GUI support.)
+  dev_url: https://github.com/enthought/traits
+  doc_url: https://docs.enthought.com/traits
 
 extra:
   recipe-maintainers:
