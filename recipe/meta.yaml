@@ -1,13 +1,13 @@
 {% set name = "traits" %}
-{% set version = "7.0.2" %}
+{% set version = "7.1.0" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a563515809cb3911975de5a54209855f0b6fdb7ca6912a5e81de26529f70428c
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: af4775747e11e05ffe13d3ba463d92f67f1f3d1a9e4f46ba33a44ea22b0c9644
 
 build:
   number: 0
@@ -50,28 +50,28 @@ about:
     of type definition called a trait, which gives object attributes
     some additional characteristics:
 
-      Initialization: A trait has a default value, which is
-      automatically set as the initial value of an attribute before
-      its first use in a program.
+    Initialization: A trait has a default value, which is
+    automatically set as the initial value of an attribute before
+    its first use in a program.
 
-      Validation: The type of a trait attribute is explicitly
-      declared. The type is evident in the code, and only values that
-      meet a programmer-specified set of criteria (i.e., the trait
-      definition) can be assigned to that attribute.
+    Validation: The type of a trait attribute is explicitly
+    declared. The type is evident in the code, and only values that
+    meet a programmer-specified set of criteria (i.e., the trait
+    definition) can be assigned to that attribute.
 
-      Delegation: The value of a trait attribute can be contained
-      either in the defining object or in another object delegated to
-      by the trait.
+    Delegation: The value of a trait attribute can be contained
+    either in the defining object or in another object delegated to
+    by the trait.
 
-      Notification: Setting the value of a trait attribute can notify
-      other parts of the program that the value has changed.
+    Notification: Setting the value of a trait attribute can notify
+    other parts of the program that the value has changed.
 
-      Visualization: User interfaces that allow a user to
-      interactively modify the value of a trait attribute can be
-      automatically constructed using the trait’s definition. (This
-      feature requires that a supported GUI toolkit be installed. If
-      this feature is not used, the Traits project does not otherwise
-      require GUI support.)
+    Visualization: User interfaces that allow a user to
+    interactively modify the value of a trait attribute can be
+    automatically constructed using the trait’s definition. (This
+    feature requires that a supported GUI toolkit be installed. If
+    this feature is not used, the Traits project does not otherwise
+    require GUI support.)
   dev_url: https://github.com/enthought/traits
   doc_url: https://docs.enthought.com/traits
 
