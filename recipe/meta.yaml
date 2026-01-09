@@ -13,8 +13,6 @@ build:
   number: 0
   skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
-  entry_points:
-    - introduction = traits.examples._etsdemo_info:introduction
 
 requirements:
   build:
