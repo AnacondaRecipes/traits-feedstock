@@ -1,5 +1,5 @@
 {% set name = "traits" %}
-{% set version = "7.1.0" %}
+{% set version = "7.2.0" %}
 
 package:
   name: {{ name }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: af4775747e11e05ffe13d3ba463d92f67f1f3d1a9e4f46ba33a44ea22b0c9644
+  sha256: 77e2203f2bebc06fada6139475a974dc96cf2e99991e4fe4ffd29e346ca0fc13
 
 build:
   number: 0
-  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  skip: true  # [py<310]
 
 requirements:
   build:
@@ -39,7 +39,7 @@ test:
     - pytest -v --pyargs traits
 
 about:
-  home: https://docs.enthought.com/traits/
+  home: https://docs.enthought.com/traits
   license: BSD-3-Clause
   license_file: LICENSE.txt
   license_family: BSD
